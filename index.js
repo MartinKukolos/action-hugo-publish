@@ -9,8 +9,8 @@ try {
     const title = github.context.payload.issue.title;
     const body = github.context.payload.issue.body;
     let slug = '';
-    const tags = labels.filter(label => label.startsWith('tag:')).map(label => label.replace('tag:', ''));
-    const type = labels.filter(label => label.startsWith('type:')).map(label => label.replace('type:', ''))[0];
+    const tags = labels.filter(label => /^tag[:\/]/.test(label)).map(label => label.replace(/^tag[:\/]/, ''));
+    const type = labels.filter(label => /^type[:\/]/.test(label)).map(label => label.replace(/^type[:\/]/, ''))[0];
     const created_at = github.context.payload.issue.created_at;
 
     // create slug
